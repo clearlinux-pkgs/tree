@@ -4,7 +4,7 @@
 #
 Name     : tree
 Version  : 1.7.0
-Release  : 1
+Release  : 2
 URL      : http://mama.indstate.edu/users/ice/tree/src/tree-1.7.0.tgz
 Source0  : http://mama.indstate.edu/users/ice/tree/src/tree-1.7.0.tgz
 Summary  : No detailed summary available
