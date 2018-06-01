@@ -4,7 +4,7 @@
 #
 Name     : tree
 Version  : 1.7.0
-Release  : 5
+Release  : 6
 URL      : http://mama.indstate.edu/users/ice/tree/src/tree-1.7.0.tgz
 Source0  : http://mama.indstate.edu/users/ice/tree/src/tree-1.7.0.tgz
 Summary  : No detailed summary available
@@ -42,13 +42,16 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1527825574
+export SOURCE_DATE_EPOCH=1527825693
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1527825574
+export SOURCE_DATE_EPOCH=1527825693
 rm -rf %{buildroot}
 %make_install BINDIR="%{buildroot}%{_bindir}" MANDIR="%{buildroot}%{_mandir}/man1"
+## make_install_append content
+chmod 0644 %{buildroot}/usr/share/man/man1/*
+## make_install_append end
 
 %files
 %defattr(-,root,root,-)
