@@ -4,14 +4,14 @@
 #
 Name     : tree
 Version  : 1.7.0
-Release  : 4
+Release  : 5
 URL      : http://mama.indstate.edu/users/ice/tree/src/tree-1.7.0.tgz
 Source0  : http://mama.indstate.edu/users/ice/tree/src/tree-1.7.0.tgz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0
 Requires: tree-bin
-Requires: tree-doc
+Requires: tree-man
 
 %description
 Please read the INSTALL file for installation instructions, particularly if
@@ -20,26 +20,33 @@ you are installing on a non-Linux machine.
 %package bin
 Summary: bin components for the tree package.
 Group: Binaries
+Requires: tree-man
 
 %description bin
 bin components for the tree package.
 
 
-%package doc
-Summary: doc components for the tree package.
-Group: Documentation
+%package man
+Summary: man components for the tree package.
+Group: Default
 
-%description doc
-doc components for the tree package.
+%description man
+man components for the tree package.
 
 
 %prep
 %setup -q -n tree-1.7.0
 
 %build
-make V=1  %{?_smp_mflags}
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
+export LANG=C
+export SOURCE_DATE_EPOCH=1527825574
+make  %{?_smp_mflags}
 
 %install
+export SOURCE_DATE_EPOCH=1527825574
 rm -rf %{buildroot}
 %make_install BINDIR="%{buildroot}%{_bindir}" MANDIR="%{buildroot}%{_mandir}/man1"
 
@@ -50,6 +57,6 @@ rm -rf %{buildroot}
 %defattr(-,root,root,-)
 /usr/bin/tree
 
-%files doc
+%files man
 %defattr(-,root,root,-)
-%doc /usr/share/man/man1/*
+/usr/share/man/man1/tree.1
