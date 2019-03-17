@@ -4,10 +4,10 @@
 #
 Name     : tree
 Version  : 1.8.0
-Release  : 7
+Release  : 8
 URL      : http://mama.indstate.edu/users/ice/tree/src/tree-1.8.0.tgz
 Source0  : http://mama.indstate.edu/users/ice/tree/src/tree-1.8.0.tgz
-Summary  : No detailed summary available
+Summary  : A directory listing program displaying a depth indented list of files
 Group    : Development/Tools
 License  : GPL-2.0
 Requires: tree-bin = %{version}-%{release}
@@ -22,7 +22,6 @@ you are installing on a non-Linux machine.
 Summary: bin components for the tree package.
 Group: Binaries
 Requires: tree-license = %{version}-%{release}
-Requires: tree-man = %{version}-%{release}
 
 %description bin
 bin components for the tree package.
@@ -52,11 +51,13 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1542479717
+export SOURCE_DATE_EPOCH=1552835368
+export LDFLAGS="${LDFLAGS} -fno-lto"
 make  %{?_smp_mflags}
 
+
 %install
-export SOURCE_DATE_EPOCH=1542479717
+export SOURCE_DATE_EPOCH=1552835368
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/tree
 cp LICENSE %{buildroot}/usr/share/package-licenses/tree/LICENSE
