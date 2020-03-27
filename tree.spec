@@ -4,7 +4,7 @@
 #
 Name     : tree
 Version  : 1.8.0
-Release  : 8
+Release  : 9
 URL      : http://mama.indstate.edu/users/ice/tree/src/tree-1.8.0.tgz
 Source0  : http://mama.indstate.edu/users/ice/tree/src/tree-1.8.0.tgz
 Summary  : A directory listing program displaying a depth indented list of files
