@@ -4,10 +4,10 @@
 #
 Name     : tree
 Version  : 1.8.0
-Release  : 9
+Release  : 10
 URL      : http://mama.indstate.edu/users/ice/tree/src/tree-1.8.0.tgz
 Source0  : http://mama.indstate.edu/users/ice/tree/src/tree-1.8.0.tgz
-Summary  : A directory listing program displaying a depth indented list of files
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0
 Requires: tree-bin = %{version}-%{release}
@@ -45,22 +45,27 @@ man components for the tree package.
 
 %prep
 %setup -q -n tree-1.8.0
+cd %{_builddir}/tree-1.8.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1552835368
-export LDFLAGS="${LDFLAGS} -fno-lto"
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1604600746
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$FFLAGS -fno-lto "
+export FFLAGS="$FFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
 make  %{?_smp_mflags}
 
 
 %install
-export SOURCE_DATE_EPOCH=1552835368
+export SOURCE_DATE_EPOCH=1604600746
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/tree
-cp LICENSE %{buildroot}/usr/share/package-licenses/tree/LICENSE
+cp %{_builddir}/tree-1.8.0/LICENSE %{buildroot}/usr/share/package-licenses/tree/0b184ad51ba2a79e85d2288d5fcf8a1ea0481ea4
 %make_install BINDIR="%{buildroot}%{_bindir}" MANDIR="%{buildroot}%{_mandir}/man1"
 ## install_append content
 chmod 0644 %{buildroot}/usr/share/man/man1/*
@@ -75,7 +80,7 @@ chmod 0644 %{buildroot}/usr/share/man/man1/*
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/tree/LICENSE
+/usr/share/package-licenses/tree/0b184ad51ba2a79e85d2288d5fcf8a1ea0481ea4
 
 %files man
 %defattr(0644,root,root,0755)
