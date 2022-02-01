@@ -1,1 +1,1 @@
-BINDIR="%{buildroot}%{_bindir}" MANDIR="%{buildroot}%{_mandir}/man1"
+PREFIX="%{buildroot}/usr" MANDIR="%{buildroot}/usr/share/man"

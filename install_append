@@ -1,1 +1,2 @@
-chmod 0644 %{buildroot}/usr/share/man/man1/*
+mkdir -p %{buildroot}/usr/bin
+mv %{buildroot}/tree %{buildroot}/usr/bin/
