@@ -1,5 +1,5 @@
 PKG_NAME := tree
-URL = http://mama.indstate.edu/users/ice/tree/src/tree-2.0.2.tgz
+URL = https://mama.indstate.edu/users/ice/tree/src/tree-2.0.3.tgz
 ARCHIVES = 
 
 include ../common/Makefile.common
