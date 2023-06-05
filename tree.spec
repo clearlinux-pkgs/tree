@@ -5,7 +5,7 @@
 #
 Name     : tree
 Version  : 2.1.1
-Release  : 16
+Release  : 17
 URL      : https://mama.indstate.edu/users/ice/tree/src/tree-2.1.1.tgz
 Source0  : https://mama.indstate.edu/users/ice/tree/src/tree-2.1.1.tgz
 Summary  : No detailed summary available
@@ -50,16 +50,13 @@ man components for the tree package.
 %prep
 %setup -q -n tree-2.1.1
 cd %{_builddir}/tree-2.1.1
-pushd ..
-cp -a tree-2.1.1 buildavx2
-popd
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1685660989
+export SOURCE_DATE_EPOCH=1685997363
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
@@ -67,33 +64,20 @@ export FFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-l
 export CXXFLAGS="$CXXFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 make  %{?_smp_mflags}
 
-pushd ../buildavx2
-export CFLAGS="$CFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3"
-export CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3"
-export FFLAGS="$FFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3"
-export FCFLAGS="$FCFLAGS -m64 -march=x86-64-v3"
-export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3"
-make  %{?_smp_mflags}
-popd
 
 %install
-export SOURCE_DATE_EPOCH=1685660989
+export SOURCE_DATE_EPOCH=1685997363
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/tree
 cp %{_builddir}/tree-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/tree/0b184ad51ba2a79e85d2288d5fcf8a1ea0481ea4 || :
-pushd ../buildavx2/
-%make_install_v3 PREFIX="%{buildroot}/usr" MANDIR="%{buildroot}/usr/share/man"
-popd
 %make_install PREFIX="%{buildroot}/usr" MANDIR="%{buildroot}/usr/share/man"
 ## install_append content
 mkdir -p %{buildroot}/usr/bin
 mv %{buildroot}/tree %{buildroot}/usr/bin/
 ## install_append end
-/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
-/V3/tree
 
 %files bin
 %defattr(-,root,root,-)
