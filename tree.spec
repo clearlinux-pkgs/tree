@@ -7,7 +7,7 @@
 #
 Name     : tree
 Version  : 2.1.1
-Release  : 19
+Release  : 20
 URL      : http://oldmanprogrammer.net/tar/tree/tree-2.1.1.tgz
 Source0  : http://oldmanprogrammer.net/tar/tree/tree-2.1.1.tgz
 Summary  : No detailed summary available
@@ -64,7 +64,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1707106794
+export SOURCE_DATE_EPOCH=1707144629
 export GCC_IGNORE_WERROR=1
 CLEAR_INTERMEDIATE_CFLAGS="$CLEAR_INTERMEDIATE_CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 CLEAR_INTERMEDIATE_FCFLAGS="$CLEAR_INTERMEDIATE_FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
@@ -108,7 +108,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1707106794
+export SOURCE_DATE_EPOCH=1707144629
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/tree
 cp %{_builddir}/tree-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/tree/0b184ad51ba2a79e85d2288d5fcf8a1ea0481ea4 || :
@@ -122,14 +122,14 @@ popd
 ## install_append content
 mkdir -p %{buildroot}/usr/bin
 mv %{buildroot}/tree %{buildroot}/usr/bin/
+rm -f %{buildroot}*/tree
+
 ## install_append end
 /usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 /usr/bin/elf-move.py apx %{buildroot}-va %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
-/V3/tree
-/VA/tree
 
 %files bin
 %defattr(-,root,root,-)

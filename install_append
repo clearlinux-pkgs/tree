@@ -1,2 +1,4 @@
 mkdir -p %{buildroot}/usr/bin
 mv %{buildroot}/tree %{buildroot}/usr/bin/
+rm -f %{buildroot}*/tree
+
