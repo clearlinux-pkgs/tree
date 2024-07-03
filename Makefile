@@ -1,5 +1,5 @@
 PKG_NAME := tree
-URL = http://oldmanprogrammer.net/tar/tree/tree-2.1.1.tgz
+URL = https://oldmanprogrammer.net/tar/tree/tree-2.1.2.tgz
 ARCHIVES = 
 
 include ../common/Makefile.common
